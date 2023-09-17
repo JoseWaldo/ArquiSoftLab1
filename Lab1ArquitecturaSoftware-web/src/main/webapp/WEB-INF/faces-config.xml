@@ -34,12 +34,39 @@
         <managed-bean-class>com.udea.controller.Captcha.java</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
-    
+
     <application>
         <resource-bundle>
-            <base-name>com.udea.pagos.web.properties.mesagges</base-name>
+            <base-name>com.udea.jsf.properties.messages</base-name>
             <var>msg</var>
         </resource-bundle>
     </application>
-    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>submit</from-outcome>
+            <to-view-id>/results.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/results.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>back</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>toDrivers</from-outcome>
+            <to-view-id>/drivers.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>toVehicles</from-outcome>
+            <to-view-id>/vehicles.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

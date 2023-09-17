@@ -26,7 +26,9 @@ public interface VehiclesFacadeLocal {
     List<Vehicles> findAll();
 
     List<Vehicles> findRange(int[] range);
-
+    
+    List<Vehicles> getAllVehicles();
+    
     int count();
     
 }

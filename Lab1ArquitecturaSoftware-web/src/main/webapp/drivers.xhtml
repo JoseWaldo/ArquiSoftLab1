@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="css/drivers.css"/>
+        <title>Registro de Conductores</title>
+        <script name="jquery/jquery.js" library="primefaces"></script>
+    </h:head>
+    <h:body class="body">
+        <h1 class="title"><h:outputText value="Registro de Conductores" /></h1>
+            <h:form class="form_drivers">
+                <h2 class="form_title">Nuevo Conductor</h2>
+                <section class="form-wrapper_inputs">
+                    <div class="field">
+                        <p:outputLabel for="name" styleClass="block">Nombres</p:outputLabel>
+                        <p:inputText id="name" styleClass="block"/>
+                    </div>
+                    <div class="field">
+                        <p:outputLabel for="lastNames" styleClass="block">Apellidos</p:outputLabel>
+                        <p:inputText id="lastNames" styleClass="block"/>
+                    </div>  
+                    <div class="field">
+                        <p:outputLabel for="nIdentification" styleClass="block">N° Identificación</p:outputLabel>
+                        <p:inputText id="nIdentification" styleClass="block"/>
+                    </div>  
+                    <div class="field">
+                        <p:outputLabel for="email" styleClass="block">Email</p:outputLabel>
+                        <p:inputText id="email" styleClass="block"/>
+                    </div>  
+                    <div class="field">
+                        <p:outputLabel for="phone" styleClass="block">Telefono</p:outputLabel>
+                        <p:inputText id="phone" styleClass="block"/>
+                    </div>   
+                </section>
+                <section class="form-section_buttons">
+                    <button class="button button--clean">Limpiar</button>
+                    <button class="button">
+                        Guardar
+                        <i class="pi pi-save"></i>
+                    </button>
+                </section>
+            </h:form>
+    </h:body>
+</html>

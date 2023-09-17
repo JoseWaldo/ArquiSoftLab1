@@ -5,6 +5,7 @@
 package com.udea.ejb;
 
 import com.udea.models.Drivers;
+import com.udea.models.Vehicles;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -26,7 +27,7 @@ public interface DriversFacadeLocal {
     List<Drivers> findAll();
 
     List<Drivers> findRange(int[] range);
-
+        
     int count();
     
 }

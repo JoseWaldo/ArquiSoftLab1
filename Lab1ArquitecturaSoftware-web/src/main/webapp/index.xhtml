@@ -1,11 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <title><h:outputText value="#{msg.title}" /></title>
+        <script name="jquery/jquery.js" library="primefaces"></script>
     </h:head>
-    <h:body>
-        Hello from Facelets
+    <h:body class="body">
+        <h1 class="title"><h:outputText value="#{msg.title}" /></h1>
+        
+        <div class="container_languages">
+            <p:outputLabel for="country" value="Selecciona un idioma: "/>
+            <p:selectOneMenu id="country" value="" style="width:150px">
+                <f:selectItem itemLabel="Español" itemValue="spanish"/>
+                <f:selectItem itemLabel="Inglés" itemValue="english"/>
+            </p:selectOneMenu>
+        </div>
+        
+        <section class="section_register">
+            <h:link class="register_link" outcome="toVehicles">Registrar Vehiculos</h:link>
+            <h:link class="register_link" outcome="toDrivers">Registrar Conductores</h:link>
+        </section>
+        
+        <footer class="footer">
+            <ul class="footer__list">
+                <li class="list__item">Camilo Avendaño</li>
+                <li class="list__item">David Upegui</li>
+                <li class="list__item">Jose Waldo</li>
+            </ul>
+        </footer>
     </h:body>
 </html>

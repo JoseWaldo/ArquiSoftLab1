@@ -6,7 +6,77 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Created on : 16 sep. 2023, 18:00:38
     Author     : jose_waldo
 */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
 
-.errorMsg {
-    color: red;
+.body {
+    font-family: "system-ui";
+    position: relative;
+    height: 100vh;
+    color: #212121;
+}
+
+.title {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.container_languages {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;    
+    padding: 1rem 0;
+}
+
+.section_register {
+    padding: 2rem 0;
+    width: 80%;
+    margin: 1rem auto;
+    border-top: 1px solid #212121;
+    text-align: center;
+}
+
+.register_link {
+    padding: 0.4rem 2rem;
+    background-color: #212121;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 1rem;
+    margin: 0 1rem;
+    font-weight: 500;
+    border: 1.5px solid #212121;
+    transition: all 300ms ease-in-out;
+}
+
+.register_link:hover {
+    background-color: #fff;
+    color: #212121;
+}
+
+
+/*------ FOOTER STYLES ------*/
+
+.footer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 0;
+    width: 100%;
+    background-color: #c7c7c7;
+    bottom: 0;
+    left: 0;
+}
+
+.footer__list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    font-weight: 500;
 }
