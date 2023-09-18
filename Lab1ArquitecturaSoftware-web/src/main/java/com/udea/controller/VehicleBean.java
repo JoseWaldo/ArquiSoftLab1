@@ -28,7 +28,7 @@ public class VehicleBean {
     private String name;
     private String model;
     private String color;
-    private Drivers driverId;
+    private String driverId;
     private boolean disabledButton = true;
     
     private List<Vehicles> vehicles;
@@ -110,11 +110,11 @@ public class VehicleBean {
         this.color = color;
     }
 
-    public Drivers getDriver_id() {
+    public String getDriver_id() {
         return driverId;
     }
 
-    public void setDriver_id(Drivers driver_id) {
+    public void setDriver_id(String driver_id) {
         this.driverId = driver_id;
     }
 
