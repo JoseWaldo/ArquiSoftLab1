@@ -10,7 +10,11 @@
         <script name="jquery/jquery.js" library="primefaces"></script>
     </h:head>
     <h:body class="body">
-        <h1 class="title"><h:outputText value="Registro de Conductores" /></h1>
+        <header class="header">
+            <h:link class="register_link" outcome="driversToIndex">Volver al inicio</h:link>
+            <h1 class="title"><h:outputText value="Registro de Conductores" /></h1>
+            <h:link class="register_link" outcome="driversToTableDrivers">Ver Conductores</h:link>
+        </header>
         <h:form class="form_drivers">
             <h2 class="form_title">Nuevo Conductor</h2>
             <section class="form-wrapper_inputs">

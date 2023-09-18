@@ -30,4 +30,12 @@ public interface DriversFacadeLocal {
         
     int count();
     
+    boolean existeCedula(String cedula);
+    
+    boolean existeCorreo(String correo);
+    
+    boolean esValidoCorreo(String correo);
+    
+    boolean esValidaCedula(String cedula);
+    
 }

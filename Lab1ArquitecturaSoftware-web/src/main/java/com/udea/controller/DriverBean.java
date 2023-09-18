@@ -8,6 +8,8 @@ import com.udea.ejb.DriversFacadeLocal;
 import com.udea.models.Drivers;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -18,19 +20,20 @@ import javax.faces.context.FacesContext;
  * @author jose_waldo
  */
 public class DriverBean {
-    
+
     @EJB
     private com.udea.ejb.DriversFacadeLocal driversFacade;
-    
+
     private UIComponent myButton;
-    
+
     private String name;
     private String lastName;
     private String identification;
     private String email;
     private String phone;
-    
-    public DriverBean() { 
+    private List<Drivers> driversList;
+
+    public DriverBean() {
         this.driversList = new ArrayList<>();
     }
 
@@ -66,7 +69,6 @@ public class DriverBean {
         this.lastName = lastName;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -82,8 +84,6 @@ public class DriverBean {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    
-    public List<Drivers> driversList;
 
     public UIComponent getMyButton() {
         return myButton;
@@ -104,40 +104,105 @@ public class DriverBean {
     public void setDriversList(List<Drivers> driversList) {
         this.driversList = driversList;
     }
-    
+
     public String saveDriver() {
-     System.out.println("Entro en saveDriver  a a a a a a  a a a a a a a aa a a a a a a a a a a a a a a a a a a a a  aa  aa a a a  aa a  a aa ");
-        if(this.verificarCedula()){
-            FacesContext context = FacesContext.getCurrentInstance();
+        System.out.println("Entro en saveDriver  a a a a a a  a a a a a a a aa a a a a a a a a a a a a a a a a a a a a  aa  aa a a a  aa a  a aa ");
+        FacesContext context = FacesContext.getCurrentInstance();
+        
+        /*
+        if (!this.driversFacade.esValidaCedula(this.identification)) {
+            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "La cédula solo debe tener números"));
+            return null;
+        }
+
+        if (this.driversFacade.existeCedula(this.identification)) {
             context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "La cédula ya existe"));
             return null;
-
         }
-        Drivers conductor = new Drivers();
-        conductor.setEmail(email);
-        conductor.setName(name);
-        conductor.setLastName(lastName);
-        conductor.setNIdentification(identification);
-        conductor.setPhone(phone);
+
+        if (!this.driversFacade.esValidoCorreo(this.email)) {
+            System.out.println("");
+            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No es un correo válido"));
+            return null;
+        }
+
+        if (this.driversFacade.existeCorreo(this.email)) {
+            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El correo ya existe"));
+            return null;
+        }
+        */
         
+        if (!this.esValidaCedula()) {
+            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "La cédula solo debe tener números", ""));
+            return null;
+        }
+
+        if (this.existeCedula()) {
+            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "La cédula ya existe", "La cédula ya existe"));
+            return null;
+        }
+
+        if (!this.esValidoCorreo()) {
+            System.out.println("");
+            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "No es un correo válido", "No es un correo válido"));
+            return null;
+        }
+
+        if (this.existeCorreo()) {
+            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "El correo ya existe", "El correo ya existe"));
+            return null;
+        }
+        
+        Drivers conductor = new Drivers();
+        conductor.setEmail(this.email);
+        conductor.setName(this.name);
+        conductor.setLastName(this.lastName);
+        conductor.setNIdentification(this.identification);
+        conductor.setPhone(this.phone);
+
         System.out.println(conductor.toString());
-        Drivers conductorAuxiliar = this.driversFacade.find("14");
-        System.out.println(conductorAuxiliar.toString());
+        // Drivers conductorAuxiliar = this.driversFacade.find("14");
         this.driversFacade.create(conductor);
         this.driversList.add(conductor);
         return "successfully";
     }
-    
-    public boolean verificarCedula(){
-        System.out.println("entro a verificarcedula b b b b b b b b b b b  bb b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b  ");
-        for(Drivers conductor: this.getDriversList()){
-            System.out.println("Entro en el for de verificarcedula cc c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c   aa a  a aa ");
-            if (conductor.getNIdentification() == this.identification){
-                
-                return true;
-            } 
+
+    private boolean existeCedula() {
+        if (!this.getDriversList().isEmpty()) {
+            for (Drivers conductor : this.getDriversList()) {
+                if (conductor.getNIdentification().equals(this.identification)) {
+                    return true;
+                }
+            }
         }
+
         return false;
     }
-    
+
+    private boolean existeCorreo() {
+        if (!this.getDriversList().isEmpty()) {
+            for (Drivers conductor : this.getDriversList()) {
+                if (conductor.getEmail().equals(this.email)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean esValidoCorreo() {
+        String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(this.email);
+        return matcher.matches();
+    }
+
+    private boolean esValidaCedula() {
+        String regex = "^[0-9]{1,15}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(this.identification);
+        return matcher.matches();
+    }
+
 }
