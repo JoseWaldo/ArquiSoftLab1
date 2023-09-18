@@ -9,16 +9,16 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author jose_waldo
+ * @author juanc
  */
 @Entity
 @Table(name = "vehicles")
@@ -28,26 +28,37 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Vehicles.findByPlaca", query = "SELECT v FROM Vehicles v WHERE v.placa = :placa"),
     @NamedQuery(name = "Vehicles.findByName", query = "SELECT v FROM Vehicles v WHERE v.name = :name"),
     @NamedQuery(name = "Vehicles.findByModel", query = "SELECT v FROM Vehicles v WHERE v.model = :model"),
-    @NamedQuery(name = "Vehicles.findByColor", query = "SELECT v FROM Vehicles v WHERE v.color = :color")})
+    @NamedQuery(name = "Vehicles.findByColor", query = "SELECT v FROM Vehicles v WHERE v.color = :color"),
+    @NamedQuery(name = "Vehicles.findByDriverId", query = "SELECT v FROM Vehicles v WHERE v.driverId = :driverId")})
 public class Vehicles implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 6)
     @Column(name = "placa")
     private String placa;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 40)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 4)
     @Column(name = "model")
     private String model;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "color")
     private String color;
-    @JoinColumn(name = "driver_id", referencedColumnName = "n_identification")
-    @ManyToOne(optional = false)
-    private Drivers driverId;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(name = "driver_id")
+    private String driverId;
 
     public Vehicles() {
     }
@@ -56,11 +67,12 @@ public class Vehicles implements Serializable {
         this.placa = placa;
     }
 
-    public Vehicles(String placa, String name, String model, String color) {
+    public Vehicles(String placa, String name, String model, String color, String driverId) {
         this.placa = placa;
         this.name = name;
         this.model = model;
         this.color = color;
+        this.driverId = driverId;
     }
 
     public String getPlaca() {
@@ -95,11 +107,11 @@ public class Vehicles implements Serializable {
         this.color = color;
     }
 
-    public Drivers getDriverId() {
+    public String getDriverId() {
         return driverId;
     }
 
-    public void setDriverId(Drivers driverId) {
+    public void setDriverId(String driverId) {
         this.driverId = driverId;
     }
 

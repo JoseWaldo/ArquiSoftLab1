@@ -5,22 +5,20 @@
 package com.udea.models;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author jose_waldo
+ * @author juanc
  */
 @Entity
 @Table(name = "drivers")
@@ -36,23 +34,33 @@ public class Drivers implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 40)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 40)
     @Column(name = "last_name")
     private String lastName;
     @Id
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "n_identification")
     private String nIdentification;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
     @Column(name = "email")
     private String email;
+    // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
     @Column(name = "phone")
     private String phone;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "driverId")
-    private Collection<Vehicles> vehiclesCollection;
 
     public Drivers() {
     }
@@ -107,15 +115,6 @@ public class Drivers implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    @XmlTransient
-    public Collection<Vehicles> getVehiclesCollection() {
-        return vehiclesCollection;
-    }
-
-    public void setVehiclesCollection(Collection<Vehicles> vehiclesCollection) {
-        this.vehiclesCollection = vehiclesCollection;
     }
 
     @Override

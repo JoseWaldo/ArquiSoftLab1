@@ -5,7 +5,10 @@
 package com.udea.controller;
 
 import com.udea.ejb.DriversFacadeLocal;
+import com.udea.models.Drivers;
+import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
 
 /**
  *
@@ -15,6 +18,8 @@ public class DriverBean {
     
     @EJB
     private com.udea.ejb.DriversFacadeLocal driversFacade;
+    
+    private UIComponent myButton;
     
     private String name;
     private String lastName;
@@ -73,6 +78,53 @@ public class DriverBean {
         this.phone = phone;
     }
     
+    public List<Drivers> driversList;
+
+    public UIComponent getMyButton() {
+        return myButton;
+    }
+
+    public void setMyButton(UIComponent myButton) {
+        this.myButton = myButton;
+    }
+
+    public List<Drivers> getDriversList() {
+        if (this.driversList == null || this.driversList.isEmpty()) {
+            this.driversList = this.driversFacade.findAll();
+        }
+
+        return driversList;
+    }
+
+    public void setDriversList(List<Drivers> driversList) {
+        this.driversList = driversList;
+    }
     
+    public String saveDriver() {
+     System.out.println("Entro en saveDriver  a a a a a a  a a a a a a a aa a a a a a a a a a a a a a a a a a a a a  aa  aa a a a  aa a  a aa ");
+        if(this.verificarCedula()){
+            return "ya existe un conductor con esa cedula";
+        }
+        Drivers conductor = new Drivers();
+        conductor.setEmail(email);
+        conductor.setName(name);
+        conductor.setLastName(lastName);
+        conductor.setNIdentification(nIdentification);
+        this.driversFacade.create(conductor);
+        this.driversList.add(conductor);
+        return "successfully";
+    }
+    
+    public boolean verificarCedula(){
+        System.out.println("entro a verificarcedula b b b b b b b b b b b  bb b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b  ");
+        for(Drivers conductor: this.getDriversList()){
+            System.out.println("Entro en el for de verificarcedula cc c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c   aa a  a aa ");
+            if (conductor.getNIdentification() == this.nIdentification){
+                
+                return true;
+            } 
+        }
+        return false;
+    }
     
 }
