@@ -10,6 +10,8 @@ import com.udea.models.Vehicles;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -20,49 +22,49 @@ import javax.faces.context.FacesContext;
  * @author jose_waldo
  */
 public class VehicleBean {
-    
+
     @EJB
     private com.udea.ejb.VehiclesFacadeLocal vehiclesFacade;
-    
+
     public UIComponent myButton;
-    
+
     private String placa;
     private String name;
     private String model;
     private String color;
     private String driverId;
-    private boolean disabledButton = true;
-    
-    private List<Vehicles> vehicles;
-    
-    private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
-    
-    public VehicleBean() {
-         this.vehiclesList = new ArrayList<>();
-    }
-    
-    public List<Vehicles> getVehicles() {
-        if(this.vehicles == null || this.vehicles.isEmpty()) {
-            refresh();
-        }
-        return this.vehicles;
-    }
-    
+    private List<Vehicles> vehiclesList;
+
+    /* --------------------- INTERNACIONALIZACIÓN --------------------- */
+    private final Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+
     public Locale getLocale() {
-        return this.locale; 
+        return this.locale;
     }
-    
+
     public String getLanguaje() {
         return this.locale.getLanguage();
     }
-    
+
     public void changeLanguaje(String languaje) {
         System.out.println("Changing language to: " + languaje);
         FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(languaje));
     }
-    
+
+    /* --------------------------------------------------------------- */
+    public VehicleBean() {
+        this.vehiclesList = new ArrayList<>();
+    }
+
+    public List<Vehicles> getVehicles() {
+        if (this.vehiclesList == null || this.vehiclesList.isEmpty()) {
+            refresh();
+        }
+        return this.vehiclesList;
+    }
+
     public void refresh() {
-        this.vehicles = vehiclesFacade.getAllVehicles();
+        this.vehiclesList = vehiclesFacade.getAllVehicles();
     }
 
     public VehiclesFacadeLocal getVehiclesFacade() {
@@ -121,16 +123,6 @@ public class VehicleBean {
         this.driverId = driver_id;
     }
 
-    public boolean isDisabledButton() {
-        return disabledButton;
-    }
-
-    public void setDisabledButton(boolean disabledButton) {
-        this.disabledButton = disabledButton;
-    }    
-    
-    public List<Vehicles> vehiclesList;
-
     public String getDriverId() {
         return driverId;
     }
@@ -140,7 +132,7 @@ public class VehicleBean {
     }
 
     public List<Vehicles> getVehiclesList() {
-        if(this.vehiclesList == null || this.vehiclesList.isEmpty()){
+        if (this.vehiclesList == null || this.vehiclesList.isEmpty()) {
             this.vehiclesList = this.vehiclesFacade.findAll();
         }
         return vehiclesList;
@@ -149,32 +141,74 @@ public class VehicleBean {
     public void setVehiclesList(List<Vehicles> vehiclesList) {
         this.vehiclesList = vehiclesList;
     }
-    
 
     public String save() {
-        
-        if(this.verficarPlaca()){
-             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "ya existe un auto con esta placa"));
+
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        if (this.existePlaca()) {
+            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ya existe un auto con esta placa", ""));
             return null;
         }
+        
+        if(!this.esValidoIdDriver()) {
+            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "La identificación del conductor es invalida", ""));
+            return null;
+        }
+        
+        if(!this.esValidaPlaca()) {
+            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "La placa no es valida.", ""));
+            return null;
+        }
+        
         Vehicles vehiclesPojo = new Vehicles();
         vehiclesPojo.setPlaca(placa);
         vehiclesPojo.setName(name);
         vehiclesPojo.setModel(model);
         vehiclesPojo.setColor(color);
         vehiclesPojo.setDriverId(driverId);
+        
         this.vehiclesFacade.create(vehiclesPojo);
         this.vehiclesList.add(vehiclesPojo);
-        return "VehicleCread";
+        return "VehicleCreat";
+    }
+
+    private boolean existePlaca() {
+        if (!this.vehiclesList.isEmpty()) {
+            for (Vehicles vehiculo : this.vehiclesList) {
+                if (vehiculo.getPlaca().equals(this.placa)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean esValidaPlaca() {
+        String regex = "^[A-Z]{3}\\d{3}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(this.placa);
+        return matcher.matches();
+    }
+
+    private boolean esValidoIdDriver() {
+        if (this.driverId.length() > 15) {
+            return false;
+        }
+        String regex = "^[^a-zA-Z]*$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(this.driverId);
+        return matcher.matches();
     }
     
-    public boolean verficarPlaca(){
-        for(Vehicles vehiculo: this.getVehicles()){
-            if(vehiculo.getPlaca().equals(this.placa)){
+    /*
+    public boolean verficarPlaca() {
+        for (Vehicles vehiculo : this.getVehicles()) {
+            if (vehiculo.getPlaca().equals(this.placa)) {
                 return true;
             }
         }
         return false;
     }
+    */
 }
