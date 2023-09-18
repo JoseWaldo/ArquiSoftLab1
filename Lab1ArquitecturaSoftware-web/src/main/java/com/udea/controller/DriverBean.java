@@ -23,7 +23,7 @@ public class DriverBean {
     
     private String name;
     private String lastName;
-    private String nIdentification;
+    private String identification;
     private String email;
     private String phone;
     
@@ -36,6 +36,14 @@ public class DriverBean {
 
     public void setDriversFacade(DriversFacadeLocal driversFacade) {
         this.driversFacade = driversFacade;
+    }
+
+    public String getIdentification() {
+        return identification;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
     }
 
     public String getName() {
@@ -54,13 +62,6 @@ public class DriverBean {
         this.lastName = lastName;
     }
 
-    public String getnIdentification() {
-        return nIdentification;
-    }
-
-    public void setnIdentification(String nIdentification) {
-        this.nIdentification = nIdentification;
-    }
 
     public String getEmail() {
         return email;
@@ -109,8 +110,13 @@ public class DriverBean {
         conductor.setEmail(email);
         conductor.setName(name);
         conductor.setLastName(lastName);
-        conductor.setNIdentification(nIdentification);
-        this.driversFacade.create(conductor);
+        conductor.setNIdentification(identification);
+        conductor.setPhone(phone);
+        
+        System.out.println(conductor.toString());
+        Drivers conductorAuxiliar = this.driversFacade.find("14");
+        System.out.println(conductorAuxiliar.toString());
+//        this.driversFacade.create(conductor);
         this.driversList.add(conductor);
         return "successfully";
     }
@@ -119,7 +125,7 @@ public class DriverBean {
         System.out.println("entro a verificarcedula b b b b b b b b b b b  bb b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b  ");
         for(Drivers conductor: this.getDriversList()){
             System.out.println("Entro en el for de verificarcedula cc c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c   aa a  a aa ");
-            if (conductor.getNIdentification() == this.nIdentification){
+            if (conductor.getNIdentification() == this.identification){
                 
                 return true;
             } 
