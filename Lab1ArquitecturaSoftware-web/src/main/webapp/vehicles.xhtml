@@ -31,21 +31,27 @@
                     </div>  
                     <div class="field">
                         <p:outputLabel for="driver" styleClass="block">Conductor</p:outputLabel>
-                        <p:inputText id="driver" value="#{vehicleBean.driver_id}" styleClass="block"/>
+                        <p:inputText id="driver" value="#{vehicleBean.driverId}" styleClass="block"/>
                     </div>   
                 </section>
-                <section class="form-section_buttons">
-                    <button class="button">
-                        Guardar
-                        <i class="pi pi-save"></i>
-                    </button>
+                 <section class="form-section_buttons">
+                    
+                    
+                    <p:messages id="globalMessages" showDetail="true" closable="true" />
+                    <h:commandButton class="button button-3" type="submit" id="myButton" value="Guardar" action="#{vehicleBean.save()}"/>
+                    <h:message for="myButton" />
+     
+                <h:message for="myButton"/>
+                
+                <h:message for="myButton" styleClass="errormsg" />
+                <h:messages globalOnly="true" styleClass="errormsg" />
+                    
                 </section>
                 <div class="card">
                     <h:form>
                         <p:messages showDetail="true"/>
                         <p:captcha label="Captcha"/>
                         <br/>
-                        <p:commandButton value="Check" action="#{captchaView.submit}" ajax="false" icon="pi pi-check"/>
                     </h:form>
                 </div>
             </h:form>

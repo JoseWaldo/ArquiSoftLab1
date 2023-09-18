@@ -7,9 +7,11 @@ package com.udea.controller;
 import com.udea.ejb.VehiclesFacadeLocal;
 import com.udea.models.Drivers;
 import com.udea.models.Vehicles;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
@@ -36,6 +38,7 @@ public class VehicleBean {
     private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
     
     public VehicleBean() {
+         this.vehiclesList = new ArrayList<>();
     }
     
     public List<Vehicles> getVehicles() {
@@ -126,17 +129,52 @@ public class VehicleBean {
         this.disabledButton = disabledButton;
     }    
     
+    public List<Vehicles> vehiclesList;
+
+    public String getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(String driverId) {
+        this.driverId = driverId;
+    }
+
+    public List<Vehicles> getVehiclesList() {
+        if(this.vehiclesList == null || this.vehiclesList.isEmpty()){
+            this.vehiclesList = this.vehiclesFacade.findAll();
+        }
+        return vehiclesList;
+    }
+
+    public void setVehiclesList(List<Vehicles> vehiclesList) {
+        this.vehiclesList = vehiclesList;
+    }
     
+
     public String save() {
         
+        if(this.verficarPlaca()){
+             FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "ya existe un auto con esta placa"));
+            return null;
+        }
         Vehicles vehiclesPojo = new Vehicles();
-        vehiclesPojo.setPlaca(this.placa);
-        vehiclesPojo.setName(this.name);
-        vehiclesPojo.setModel(this.model);
-        vehiclesPojo.setColor(this.color);
-        vehiclesPojo.setDriverId(this.driverId);
-        
+        vehiclesPojo.setPlaca(placa);
+        vehiclesPojo.setName(name);
+        vehiclesPojo.setModel(model);
+        vehiclesPojo.setColor(color);
+        vehiclesPojo.setDriverId(driverId);
         this.vehiclesFacade.create(vehiclesPojo);
+        this.vehiclesList.add(vehiclesPojo);
         return "VehicleCread";
+    }
+    
+    public boolean verficarPlaca(){
+        for(Vehicles vehiculo: this.getVehicles()){
+            if(vehiculo.getPlaca().equals(this.placa)){
+                return true;
+            }
+        }
+        return false;
     }
 }

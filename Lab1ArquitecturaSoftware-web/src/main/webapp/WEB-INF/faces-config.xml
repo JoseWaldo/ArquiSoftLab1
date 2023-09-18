@@ -74,10 +74,17 @@
             <to-view-id>/vehicles.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-        <navigation-rule>
+    <navigation-rule>
         <from-view-id>/drivers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>successfully</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vehicles.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>VehicleCread</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
