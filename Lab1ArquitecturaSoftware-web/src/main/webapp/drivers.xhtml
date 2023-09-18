@@ -11,66 +11,52 @@
     </h:head>
     <h:body class="body">
         <h1 class="title"><h:outputText value="Registro de Conductores" /></h1>
-            <h:form class="form_drivers">
-                <h2 class="form_title">Nuevo Conductor</h2>
-                <section class="form-wrapper_inputs">
-                    <div class="field">
-                        <p:outputLabel for="name" styleClass="block">Nombres</p:outputLabel>
-                        <p:inputText id="name" value="#{driverBean.name}" styleClass="block">
-                            <f:attribute name="requiredMessage" value="el nombre es requerido" />
-                        </p:inputText>
-                        <f:attribute name="requiredMessage"  value="el nombre es requerido" />
-                    </div>
-                    <div class="field">
-                        <p:outputLabel for="lastNames" styleClass="block">Apellidos</p:outputLabel>
-                        <p:inputText id="lastNames" value="#{driverBean.lastName}" styleClass="block">
-                            <f:attribute name="requiredMessage" value="el apellido es requerido" />
-                        </p:inputText>
-                    </div>  
-                    <div class="field">
-                        <p:outputLabel for="nIdentification" styleClass="block">N° Identificación</p:outputLabel>
-                        <p:inputText id="nIdentification" value="#{driverBean.identification}" styleClass="block">
-                            <f:attribute name="requiredMessage" value="la identificacion es requerido" />
-                        </p:inputText>
-                    </div>
-                    <div class="field">
-                        <p:outputLabel for="email" styleClass="block">Email</p:outputLabel>
-                        <p:inputText id="email" value="#{driverBean.email}" styleClass="block">
-                            <f:attribute name="requiredMessage" value="el correo es requerido" />
-                        </p:inputText>
-                    </div>  
-                    <div class="field">
-                        <p:outputLabel for="phone" styleClass="block">Telefono</p:outputLabel>
-                        <p:inputText id="phone" value="#{driverBean.phone}" styleClass="block">
-                            <f:attribute name="requiredMessage" value="el telefono es requerido" />
-                        </p:inputText>
-                    </div>   
-                    
-                </section>
-                
-                
-                <section class="form-section_buttons">
-                    
-                    
-                    <p:messages id="globalMessages" showDetail="true" closable="true" />
-                    <h:commandButton class="button button-3" type="submit" id="myButton" value="Guardar" action="#{driverBean.saveDriver()}"/>
-                    <h:message for="myButton" />
-     
-                <h:message for="myButton"/>
-                
-                <h:message for="myButton" styleClass="errormsg" />
-                <h:messages globalOnly="true" styleClass="errormsg" />
-                    
-                </section>
-                
-                
-                <div class="card">
-                    <h:form>
-                        <p:messages showDetail="true"/>
-                        <p:captcha label="Captcha"/>
-                        <br/>
-                    </h:form>
+        <h:form class="form_drivers">
+            <h2 class="form_title">Nuevo Conductor</h2>
+            <section class="form-wrapper_inputs">
+                <div class="field">
+                    <p:outputLabel for="name" styleClass="block" value="#{msg.inputNames}" />
+                    <p:inputText required="true" id="name" value="#{driverBean.name}" styleClass="block">
+                        <f:attribute name="requiredMessage" value="#{msg.errorInputName}" />
+                    </p:inputText>
                 </div>
-            </h:form>
+                <div class="field">
+                    <p:outputLabel for="lastNames" styleClass="block" value="#{msg.inputLastNames}" />
+                    <p:inputText required="true" id="lastNames" value="#{driverBean.lastName}" styleClass="block">
+                        <f:attribute name="requiredMessage" value="#{msg.errorInputLastName}" />
+                    </p:inputText>
+                </div>  
+                <div class="field">
+                    <p:outputLabel for="nIdentification" styleClass="block" value="#{msg.inputNIdentification}"/>
+                    <p:inputText required="true" id="nIdentification" value="#{driverBean.identification}" styleClass="block">
+                        <f:attribute name="requiredMessage" value="#{msg.errorInputNIdentification}" />
+                    </p:inputText>
+                </div>
+                <div class="field">
+                    <p:outputLabel for="email" styleClass="block" value="Email"/>
+                    <p:inputText required="true" id="email" value="#{driverBean.email}" styleClass="block">
+                        <f:attribute name="requiredMessage" value="#{msg.errorInputEmail}" />
+                    </p:inputText>
+                </div>  
+                <div class="field">
+                    <p:outputLabel for="phone" styleClass="block" value="#{msg.inputPhone}"/>
+                    <p:inputText required="true" id="phone" value="#{driverBean.phone}" styleClass="block">
+                        <f:attribute name="requiredMessage" value="#{msg.errorInputPhone}" />
+                    </p:inputText>
+                </div>                       
+            </section>
+
+            <div class="captcha">
+                <p:captcha label="Captcha"/>
+
+            </div>
+
+            <section class="form-section_buttons">
+                <h:commandButton class="button button-3" type="submit" id="myButton" value="Guardar" action="#{driverBean.saveDriver()}"/>
+            </section>
+
+            <p:messages id="messagesErrorInfo"/>
+
+        </h:form>
     </h:body>
 </html>

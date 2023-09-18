@@ -6,11 +6,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
-        <title><h:outputText value="#{msg.titleIndex}" /></title>
+        <title><h:outputText value="#{msg.tittleIndex}" /></title>
         <script name="jquery/jquery.js" library="primefaces"></script>
     </h:head>
     <h:body class="body">
-        <h1 class="title"><h:outputText value="#{msg.titleIndex}" /></h1>
+        <h1 class="title"><h:outputText value="#{msg.tittleIndex}" /></h1>
 
         <div class="container_languages">
             <p:outputLabel value="#{msg.selectLang}"/>
@@ -21,8 +21,14 @@
         </div>
 
         <section class="section_register">
-            <h:link class="register_link" outcome="toVehicles">#{msg.regVehicles}</h:link>
-            <h:link class="register_link" outcome="toDrivers">#{msg.regVehicles}</h:link>
+            <div>
+                <h:link class="register_link" outcome="toVehicles">#{msg.regVehicles}</h:link>
+                <h:link class="register_link" outcome="toDrivers">#{msg.regDrivers}</h:link>
+            </div>
+            <div>
+                <h:link class="register_link" outcome="toTableVehicles">Ver Vehiculos</h:link>
+                <h:link class="register_link" outcome="toTableDrivers">Ver Conductores</h:link>
+            </div>
         </section>
 
         <footer class="footer">

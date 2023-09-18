@@ -6,6 +6,7 @@ package com.udea.controller;
 
 import com.udea.ejb.DriversFacadeLocal;
 import com.udea.models.Drivers;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -29,7 +30,8 @@ public class DriverBean {
     private String email;
     private String phone;
     
-    public DriverBean() {   
+    public DriverBean() { 
+        this.driversList = new ArrayList<>();
     }
 
     public DriversFacadeLocal getDriversFacade() {

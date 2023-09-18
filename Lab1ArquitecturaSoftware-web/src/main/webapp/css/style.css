@@ -39,6 +39,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     margin: 1rem auto;
     border-top: 1px solid #212121;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
 }
 
 .register_link {
