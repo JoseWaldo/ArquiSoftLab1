@@ -2,58 +2,65 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <link rel="stylesheet" type="text/css" href="css/drivers.css"/>
-        <title>Registro de Vehiculos</title>
+        <title>#{msg.titleVehicle}</title>
         <script name="jquery/jquery.js" library="primefaces"></script>
     </h:head>
     <h:body class="body">
-        <h1 class="title"><h:outputText value="Registro de Vehiculos" /></h1>
-            <h:form class="form_drivers">
-                <h2 class="form_title">Nuevo Vehiculo</h2>
-                <section class="form-wrapper_inputs">
-                    <div class="field">
-                        <p:outputLabel for="placa" styleClass="block">Placa</p:outputLabel>
-                        <p:inputText id="placa" value="#{vehicleBean.placa}" styleClass="block"/>
-                    </div>
-                    <div class="field">
-                        <p:outputLabel for="name" styleClass="block">Nombre</p:outputLabel>
-                        <p:inputText id="name" value="#{vehicleBean.name}" styleClass="block"/>
-                    </div>  
-                    <div class="field">
-                        <p:outputLabel for="model" styleClass="block">Modelo</p:outputLabel>
-                        <p:inputText id="model" value="#{vehicleBean.model}" styleClass="block"/>
-                    </div>  
-                    <div class="field">
-                        <p:outputLabel for="color" styleClass="block">Color</p:outputLabel>
-                        <p:inputText id="color" value="#{vehicleBean.color}" styleClass="block"/>
-                    </div>  
-                    <div class="field">
-                        <p:outputLabel for="driver" styleClass="block">Conductor</p:outputLabel>
-                        <p:inputText id="driver" value="#{vehicleBean.driverId}" styleClass="block"/>
-                    </div>   
-                </section>
-                 <section class="form-section_buttons">
-                    
-                    
-                    <p:messages id="globalMessages" showDetail="true" closable="true" />
-                    <h:commandButton class="button button-3" type="submit" id="myButton" value="Guardar" action="#{vehicleBean.save()}"/>
-                    <h:message for="myButton" />
-     
-                <h:message for="myButton"/>
-                
-                <h:message for="myButton" styleClass="errormsg" />
-                <h:messages globalOnly="true" styleClass="errormsg" />
-                    
-                </section>
-                <div class="card">
-                    <h:form>
-                        <p:messages showDetail="true"/>
-                        <p:captcha label="Captcha"/>
-                        <br/>
-                    </h:form>
+        <header class="header">
+            <h:link class="register_link" outcome="vehiclesToIndex">#{msg.goBack}</h:link>
+            <h1 class="title"><h:outputText value="#{msg.titleVehicle}" /></h1>
+            <h:link class="register_link" outcome="vehiclesToTableVehicles">#{msg.goTableVehicles}</h:link>
+        </header>
+        <h:form class="form_drivers">
+            <h2 class="form_title">#{msg.titleVehicleForm}</h2>
+            <section class="form-wrapper_inputs">
+                <div class="field">
+                    <p:outputLabel for="name" styleClass="block" value="#{msg.inputName}" />
+                    <p:inputText required="true" id="name" value="#{vehicleBean.name}" styleClass="block">
+                        <f:attribute name="requiredMessage" value="#{msg.errorInputName}" />
+                    </p:inputText>
                 </div>
-            </h:form>
+                <div class="field">
+                    <p:outputLabel for="placa" styleClass="block" value="#{msg.inputPlaca}" />
+                    <p:inputText required="true" id="placa" value="#{vehicleBean.placa}" styleClass="block">
+                        <f:attribute name="requiredMessage" value="La placa es un campo obligatorio" />
+                    </p:inputText>
+                </div>  
+                <div class="field">
+                    <p:outputLabel for="model" styleClass="block" value="#{msg.inputModel}"/>
+                    <p:inputText required="true" id="model" value="#{vehicleBean.model}" styleClass="block">
+                        <f:attribute name="requiredMessage" value="El modelo es un campo obligatorio" />
+                    </p:inputText>
+                </div>
+                <div class="field">
+                    <p:outputLabel for="color" styleClass="block" value="Email"/>
+                    <p:inputText required="true" id="color" value="#{vehicleBean.color}" styleClass="block">
+                        <f:attribute name="requiredMessage" value="El color es un campo obligatorio" />
+                    </p:inputText>
+                </div>  
+                <div class="field">
+                    <p:outputLabel for="idDriver" styleClass="block" value="#{msg.inputPhone}"/>
+                    <p:inputText required="true" id="idDriver" value="#{vehicleBean.driverId}" styleClass="block">
+                        <f:attribute name="requiredMessage" value="La identificacion del conductor es un campo obligatorio" />
+                    </p:inputText>
+                </div>                       
+            </section>
+
+            <div class="captcha">
+                <p:captcha label="Captcha"/>
+
+            </div>
+
+            <section class="form-section_buttons">
+                <h:commandButton class="button button-3" type="submit" id="myButton" value="Guardar" action="#{driverBean.saveDriver()}"/>
+            </section>
+
+            <p:messages id="messagesErrorInfo"/>
+
+        </h:form>
     </h:body>
 </html>

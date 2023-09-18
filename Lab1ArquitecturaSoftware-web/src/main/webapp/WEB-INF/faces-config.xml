@@ -116,4 +116,18 @@
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vehicles.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>vehiclesToTableVehicles</from-outcome>
+            <to-view-id>/tableVehicles.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+     <navigation-rule>
+        <from-view-id>/vehicles.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>vehiclesToIndex</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
