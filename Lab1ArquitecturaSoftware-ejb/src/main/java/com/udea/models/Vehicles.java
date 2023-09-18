@@ -36,7 +36,7 @@ public class Vehicles implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 6)
+    @Size(min = 1, max = 30)
     @Column(name = "placa")
     private String placa;
     @Basic(optional = false)
@@ -46,7 +46,7 @@ public class Vehicles implements Serializable {
     private String name;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 4)
+    @Size(min = 1, max = 30)
     @Column(name = "model")
     private String model;
     @Basic(optional = false)
@@ -56,7 +56,7 @@ public class Vehicles implements Serializable {
     private String color;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 30)
     @Column(name = "driver_id")
     private String driverId;
 

@@ -116,7 +116,7 @@ public class DriverBean {
         System.out.println(conductor.toString());
         Drivers conductorAuxiliar = this.driversFacade.find("14");
         System.out.println(conductorAuxiliar.toString());
-//        this.driversFacade.create(conductor);
+        this.driversFacade.create(conductor);
         this.driversList.add(conductor);
         return "successfully";
     }
