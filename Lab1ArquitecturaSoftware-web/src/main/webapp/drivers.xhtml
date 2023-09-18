@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <link rel="stylesheet" type="text/css" href="css/drivers.css"/>
         <title>Registro de Conductores</title>
@@ -15,31 +16,43 @@
                 <section class="form-wrapper_inputs">
                     <div class="field">
                         <p:outputLabel for="name" styleClass="block">Nombres</p:outputLabel>
-                        <p:inputText id="name" value="#{driverBean.name}" styleClass="block"/>
+                        <p:inputText id="name" value="#{driverBean.name}" styleClass="block">
+                            <f:attribute name="requiredMessage" value="el nombre es requerido" />
+                        </p:inputText>
+                        <f:attribute name="requiredMessage"  value="el nombre es requerido" />
                     </div>
                     <div class="field">
                         <p:outputLabel for="lastNames" styleClass="block">Apellidos</p:outputLabel>
-                        <p:inputText id="lastNames" value="#{driverBean.lastName}" styleClass="block"/>
+                        <p:inputText id="lastNames" value="#{driverBean.lastName}" styleClass="block">
+                            <f:attribute name="requiredMessage" value="el apellido es requerido" />
+                        </p:inputText>
                     </div>  
                     <div class="field">
                         <p:outputLabel for="nIdentification" styleClass="block">N° Identificación</p:outputLabel>
-                        <p:inputText id="nIdentification" value="#{driverBean.identification}" styleClass="block"/>
-                    </div>  
+                        <p:inputText id="nIdentification" value="#{driverBean.identification}" styleClass="block">
+                            <f:attribute name="requiredMessage" value="la identificacion es requerido" />
+                        </p:inputText>
+                    </div>
                     <div class="field">
                         <p:outputLabel for="email" styleClass="block">Email</p:outputLabel>
-                        <p:inputText id="email" value="#{driverBean.email}" styleClass="block"/>
+                        <p:inputText id="email" value="#{driverBean.email}" styleClass="block">
+                            <f:attribute name="requiredMessage" value="el correo es requerido" />
+                        </p:inputText>
                     </div>  
                     <div class="field">
                         <p:outputLabel for="phone" styleClass="block">Telefono</p:outputLabel>
-                        <p:inputText id="phone" value="#{driverBean.phone}" styleClass="block"/>
+                        <p:inputText id="phone" value="#{driverBean.phone}" styleClass="block">
+                            <f:attribute name="requiredMessage" value="el telefono es requerido" />
+                        </p:inputText>
                     </div>   
+                    
                 </section>
                 
                 
                 <section class="form-section_buttons">
                     
                     <p:messages id="globalMessages" showDetail="true" closable="true" />
-                    <h:commandButton class="button" type="submit" id="myButton" value="Guardar" action="#{driverBean.saveDriver()}"/>
+                    <h:commandButton class="button button-3" type="submit" id="myButton" value="Guardar" action="#{driverBean.saveDriver()}"/>
                     <h:message for="myButton" />
      
                 <h:message for="myButton"/>
