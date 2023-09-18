@@ -1,0 +1,76 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 17 sep. 2023, 19:36:38
+    Author     : jose_waldo
+*/
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.body {
+    font-family: "system-ui";
+    color: #212121;
+}
+
+.title {
+    text-align: center;
+    width: 80%;
+    margin: 1.5rem auto;
+    margin-bottom: 0;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #212121;
+}
+
+.form_drivers {
+    display: flex;
+    width: 60%;
+    max-width: 550px;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    margin: 1rem auto;
+    margin-top: 0;
+}
+
+.form_title {
+    text-align: center;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 0.7rem;
+}
+
+.form-section_buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #212121;
+    border-radius: 1rem;
+    border: 2px solid #212121;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    cursor: pointer;    
+}
+
+.button--clean {
+    color: #212121;
+    background: transparent;
+}
