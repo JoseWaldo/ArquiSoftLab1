@@ -46,7 +46,7 @@ public class VehicleBean {
     }
     
     public Locale getLocale() {
-        return this.locale;
+        return this.locale; 
     }
     
     public String getLanguaje() {
@@ -54,8 +54,8 @@ public class VehicleBean {
     }
     
     public void changeLanguaje(String languaje) {
-        locale = new Locale(languaje);
-        FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+        System.out.println("Changing language to: " + languaje);
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(languaje));
     }
     
     public void refresh() {

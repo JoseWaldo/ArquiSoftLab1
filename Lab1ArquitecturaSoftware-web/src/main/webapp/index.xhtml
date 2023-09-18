@@ -11,20 +11,20 @@
     </h:head>
     <h:body class="body">
         <h1 class="title"><h:outputText value="#{msg.titleIndex}" /></h1>
-        
+
         <div class="container_languages">
-            <p:outputLabel for="country" value="Selecciona un idioma: "/>
-            <p:selectOneMenu id="country" value="" style="width:150px">
-                <f:selectItem itemLabel="Español" itemValue="spanish"/>
-                <f:selectItem itemLabel="Inglés" itemValue="english"/>
-            </p:selectOneMenu>
+            <p:outputLabel value="#{msg.selectLang}"/>
+            <h:form>
+                <h:commandButton class="btnLang" actionListener="#{vehicleBean.changeLanguaje('spanish')}" value="${msg.langEs}"/>
+                <h:commandButton class="btnLang btnLang--eng" actionListener="#{vehicleBean.changeLanguaje('english')}" value="#{msg.langEn}"/>
+            </h:form>
         </div>
-        
+
         <section class="section_register">
-            <h:link class="register_link" outcome="toVehicles">Registrar Vehiculos</h:link>
-            <h:link class="register_link" outcome="toDrivers">Registrar Conductores</h:link>
+            <h:link class="register_link" outcome="toVehicles">#{msg.regVehicles}</h:link>
+            <h:link class="register_link" outcome="toDrivers">#{msg.regVehicles}</h:link>
         </section>
-        
+
         <footer class="footer">
             <ul class="footer__list">
                 <li class="list__item">Camilo Avendaño</li>
