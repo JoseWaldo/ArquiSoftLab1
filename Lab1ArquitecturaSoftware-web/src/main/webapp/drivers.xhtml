@@ -6,14 +6,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <link rel="stylesheet" type="text/css" href="css/drivers.css"/>
-        <title>Registro de Conductores</title>
+        <title>#{msg.titleDriver}</title>
         <script name="jquery/jquery.js" library="primefaces"></script>
     </h:head>
     <h:body class="body">
         <header class="header">
-            <h:link class="register_link" outcome="driversToIndex">Volver al inicio</h:link>
-            <h1 class="title"><h:outputText value="Registro de Conductores" /></h1>
-            <h:link class="register_link" outcome="driversToTableDrivers">Ver Conductores</h:link>
+            <h:link class="register_link" outcome="driversToIndex">#{msg.goBack}</h:link>
+            <h1 class="title"><h:outputText value="#{msg.titleDriver}" /></h1>
+            <h:link class="register_link" outcome="driversToTableDrivers">#{msg.goTableDrivers}</h:link>
         </header>
         <h:form class="form_drivers">
             <h2 class="form_title">Nuevo Conductor</h2>
