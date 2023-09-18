@@ -102,6 +102,9 @@
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <!-- LINKS PARA LA PÁGINA DE CONDUCTORES -->
+    
     <navigation-rule>
         <from-view-id>/drivers.xhtml</from-view-id>
         <navigation-case>
@@ -109,13 +112,15 @@
             <to-view-id>/tablaDrivers.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-     <navigation-rule>
+    <navigation-rule>
         <from-view-id>/drivers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>driversToIndex</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <!-- LINKS PARA LA PÁGINA DE VEHICULOS -->
     <navigation-rule>
         <from-view-id>/vehicles.xhtml</from-view-id>
         <navigation-case>
@@ -123,11 +128,44 @@
             <to-view-id>/tableVehicles.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-     <navigation-rule>
+    <navigation-rule>
         <from-view-id>/vehicles.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>vehiclesToIndex</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <!-- LINKS PARA LA PÁGINA DE TABLA VEHICULOS -->
+    <navigation-rule>
+        <from-view-id>/tableVehicles.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>tableVehiclesToVehicles</from-outcome>
+            <to-view-id>/vehicles.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/tableVehicles.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>tableVehiclesToIndex</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- LINKS PARA LA PÁGINA DE TABLA CONDUCTORES -->
+    <navigation-rule>
+        <from-view-id>/tablaDrivers.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>tableDriversToDrivers</from-outcome>
+            <to-view-id>/drivers.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/tablaDrivers.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>tableDriversToIndex</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
 </faces-config>

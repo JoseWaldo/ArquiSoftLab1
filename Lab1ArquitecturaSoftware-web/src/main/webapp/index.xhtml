@@ -15,8 +15,8 @@
         <div class="container_languages">
             <p:outputLabel value="#{msg.selectLang}"/>
             <h:form>
-                <h:commandButton class="btnLang" actionListener="#{vehicleBean.changeLanguaje('spanish')}" value="${msg.langEs}"/>
-                <h:commandButton class="btnLang btnLang--eng" actionListener="#{vehicleBean.changeLanguaje('english')}" value="#{msg.langEn}"/>
+                <h:commandButton class="btnLang" actionListener="#{vehicleBean.changeLanguaje('spanish')}" value="🇨🇴 ${msg.langEs}"/>
+                <h:commandButton class="btnLang btnLang--eng" actionListener="#{vehicleBean.changeLanguaje('english')}" value="🇺🇸 #{msg.langEn}"/>
             </h:form>
         </div>
 

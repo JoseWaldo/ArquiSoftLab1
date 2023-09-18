@@ -10,9 +10,9 @@
     </h:head>
     <h:body class="body">
         <header class="header">
-            <h:link class="register_link">#{msg.goBack}</h:link>
+            <h:link class="register_link" outcome="tableVehiclesToIndex">#{msg.goBack}</h:link>
             <h1 class="title"><h:outputText value="Lista de Vehiculos"/></h1>
-            <h:link class="register_link">Registrar Nuevo Vehiculo</h:link>
+            <h:link class="register_link" outcome="tableVehiclesToVehicles">Registrar Nuevo Vehiculo</h:link>
         </header>
         <p:dataTable class="table" value="#{vehicleBean.vehiclesList}" var="item">
             <p:column>
@@ -23,13 +23,13 @@
             </p:column>
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Name"/>
+                    <h:outputText value="#{msg.inputName}"/>
                 </f:facet>
                 <h:outputText value="#{item.name}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Model"/>
+                    <h:outputText value="#{msg.inputModel}"/>
                 </f:facet>
                 <h:outputText value="#{item.model}"/>
             </p:column>
@@ -41,7 +41,7 @@
             </p:column>
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="DriverId"/>
+                    <h:outputText value="#{msg.inputDriver}"/>
                 </f:facet>
                 <h:outputText value="#{item.driverId}"/>
             </p:column>
