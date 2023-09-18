@@ -56,7 +56,7 @@
             </div>
 
             <section class="form-section_buttons">
-                <h:commandButton class="button button-3" type="submit" id="myButton" value="Guardar" action="#{vehicleBean.save()}"/>
+                <h:commandButton class="button button-3" type="submit" id="myButton" value="Guardar" action="submitVehicle" actionListener="#{vehicleBean.save()}"/>
             </section>
 
             <p:messages id="messagesErrorInfo"/>

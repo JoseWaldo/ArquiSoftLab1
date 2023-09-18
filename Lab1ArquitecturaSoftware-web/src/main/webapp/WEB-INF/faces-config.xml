@@ -47,10 +47,17 @@
         </resource-bundle>
     </application>
     <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
+        <from-view-id>/drivers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>submit</from-outcome>
-            <to-view-id>/results.xhtml</to-view-id>
+            <to-view-id>/infoNewDriver.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/vehicles.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>submitVehicle</from-outcome>
+            <to-view-id>/infoNewVehicle.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
