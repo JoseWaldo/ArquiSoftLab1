@@ -5,51 +5,49 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Vehiculos</title><f:view>
-
-
-            <h:form>
-                <h1><h:outputText value="List"/></h1>
-                <p:dataTable value="#{vehicleBean.vehiclesList}" var="item">
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Placa"/>
-                        </f:facet>
-                        <h:outputText value="#{item.placa}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Name"/>
-                        </f:facet>
-                        <h:outputText value="#{item.name}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Model"/>
-                        </f:facet>
-                        <h:outputText value="#{item.model}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Color"/>
-                        </f:facet>
-                        <h:outputText value="#{item.color}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="DriverId"/>
-                        </f:facet>
-                        <h:outputText value="#{item.driverId}"/>
-                    </p:column>
-                    <p:column headerText="Qr Code">
-                        <p:barcode value="#{item.placa} #{item.model} #{item.name} #{item.color} #{item.driverId}" width="150px" height="150px" type="qr" format="png"/>
-                    </p:column>
-                </p:dataTable>
-            </h:form>
-        </f:view>
-
+        <link rel="stylesheet" href="./css/tables.css"/>
+        <title>Vehiculos</title>
     </h:head>
-    <h:body>
-
+    <h:body class="body">
+        <header class="header">
+            <h:link class="register_link">#{msg.goBack}</h:link>
+            <h1 class="title"><h:outputText value="Lista de Vehiculos"/></h1>
+            <h:link class="register_link">Registrar Nuevo Vehiculo</h:link>
+        </header>
+        <p:dataTable class="table" value="#{vehicleBean.vehiclesList}" var="item">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Placa"/>
+                </f:facet>
+                <h:outputText value="#{item.placa}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Name"/>
+                </f:facet>
+                <h:outputText value="#{item.name}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Model"/>
+                </f:facet>
+                <h:outputText value="#{item.model}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Color"/>
+                </f:facet>
+                <h:outputText value="#{item.color}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="DriverId"/>
+                </f:facet>
+                <h:outputText value="#{item.driverId}"/>
+            </p:column>
+            <p:column headerText="Qr Code">
+                <p:barcode value="#{item.placa} #{item.model} #{item.name} #{item.color} #{item.driverId}" width="150px" height="150px" type="qr" format="png"/>
+            </p:column>
+        </p:dataTable>
     </h:body>
 </html>
