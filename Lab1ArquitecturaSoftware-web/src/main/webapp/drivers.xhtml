@@ -15,32 +15,39 @@
                 <section class="form-wrapper_inputs">
                     <div class="field">
                         <p:outputLabel for="name" styleClass="block">Nombres</p:outputLabel>
-                        <p:inputText id="name" styleClass="block"/>
+                        <p:inputText id="name" value="#{driverBean.name}" styleClass="block"/>
                     </div>
                     <div class="field">
                         <p:outputLabel for="lastNames" styleClass="block">Apellidos</p:outputLabel>
-                        <p:inputText id="lastNames" styleClass="block"/>
+                        <p:inputText id="lastNames" value="#{driverBean.lastName}" styleClass="block"/>
                     </div>  
                     <div class="field">
                         <p:outputLabel for="nIdentification" styleClass="block">N° Identificación</p:outputLabel>
-                        <p:inputText id="nIdentification" styleClass="block"/>
+                        <p:inputText id="nIdentification" value="#{driverBean.nIdentification}" styleClass="block"/>
                     </div>  
                     <div class="field">
                         <p:outputLabel for="email" styleClass="block">Email</p:outputLabel>
-                        <p:inputText id="email" styleClass="block"/>
+                        <p:inputText id="email" value="#{driverBean.email}" styleClass="block"/>
                     </div>  
                     <div class="field">
                         <p:outputLabel for="phone" styleClass="block">Telefono</p:outputLabel>
-                        <p:inputText id="phone" styleClass="block"/>
+                        <p:inputText id="phone" value="#{driverBean.phone}" styleClass="block"/>
                     </div>   
                 </section>
                 <section class="form-section_buttons">
-                    <button class="button button--clean">Limpiar</button>
                     <button class="button">
                         Guardar
                         <i class="pi pi-save"></i>
                     </button>
                 </section>
+                <div class="card">
+                    <h:form>
+                        <p:messages showDetail="true"/>
+                        <p:captcha label="Captcha"/>
+                        <br/>
+                        <p:commandButton value="Check" action="#{captchaView.submit}" ajax="false" icon="pi pi-check"/>
+                    </h:form>
+                </div>
             </h:form>
     </h:body>
 </html>

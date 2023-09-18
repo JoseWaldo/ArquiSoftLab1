@@ -26,8 +26,13 @@
 
     <managed-bean>
         <managed-bean-name>vehicleBean</managed-bean-name>
-        <managed-bean-class>com.udea.controller.VehicleBean.java</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-class>com.udea.controller.VehicleBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>driverBean</managed-bean-name>
+        <managed-bean-class>com.udea.controller.DriverBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>captcha</managed-bean-name>
