@@ -8,7 +8,9 @@ import com.udea.ejb.DriversFacadeLocal;
 import com.udea.models.Drivers;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -104,7 +106,10 @@ public class DriverBean {
     public String saveDriver() {
      System.out.println("Entro en saveDriver  a a a a a a  a a a a a a a aa a a a a a a a a a a a a a a a a a a a a  aa  aa a a a  aa a  a aa ");
         if(this.verificarCedula()){
-            return "ya existe un conductor con esa cedula";
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "La cédula ya existe"));
+            return null;
+
         }
         Drivers conductor = new Drivers();
         conductor.setEmail(email);
@@ -116,7 +121,7 @@ public class DriverBean {
         System.out.println(conductor.toString());
         Drivers conductorAuxiliar = this.driversFacade.find("14");
         System.out.println(conductorAuxiliar.toString());
-//        this.driversFacade.create(conductor);
+        this.driversFacade.create(conductor);
         this.driversList.add(conductor);
         return "successfully";
     }
