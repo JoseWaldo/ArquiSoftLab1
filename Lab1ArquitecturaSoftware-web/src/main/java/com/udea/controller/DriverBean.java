@@ -106,31 +106,7 @@ public class DriverBean {
     }
 
     public String saveDriver() {
-        System.out.println("Entro en saveDriver  a a a a a a  a a a a a a a aa a a a a a a a a a a a a a a a a a a a a  aa  aa a a a  aa a  a aa ");
         FacesContext context = FacesContext.getCurrentInstance();
-        
-        /*
-        if (!this.driversFacade.esValidaCedula(this.identification)) {
-            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "La cédula solo debe tener números"));
-            return null;
-        }
-
-        if (this.driversFacade.existeCedula(this.identification)) {
-            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "La cédula ya existe"));
-            return null;
-        }
-
-        if (!this.driversFacade.esValidoCorreo(this.email)) {
-            System.out.println("");
-            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No es un correo válido"));
-            return null;
-        }
-
-        if (this.driversFacade.existeCorreo(this.email)) {
-            context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El correo ya existe"));
-            return null;
-        }
-        */
         
         if (!this.esValidaCedula()) {
             context.addMessage("globalMessages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "La cédula solo debe tener números", ""));
@@ -161,7 +137,6 @@ public class DriverBean {
         conductor.setPhone(this.phone);
 
         System.out.println(conductor.toString());
-        // Drivers conductorAuxiliar = this.driversFacade.find("14");
         this.driversFacade.create(conductor);
         this.driversList.add(conductor);
         return "successfully";

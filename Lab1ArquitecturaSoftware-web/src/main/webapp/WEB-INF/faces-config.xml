@@ -175,4 +175,36 @@
         </navigation-case>
     </navigation-rule>
     
+    <!-- LINKS PARA LA PÁGINA DE INFO DRIVER -->
+    <navigation-rule>
+        <from-view-id>/infoNewDriver.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>infoNewDriverToDrivers</from-outcome>
+            <to-view-id>/drivers.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/infoNewDriver.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>infoNewDriverToIndex</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+     <!-- LINKS PARA LA PÁGINA DE INFO VEHICLE -->
+    <navigation-rule>
+        <from-view-id>/infoNewVehicle.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>infoNewVehicleToDrivers</from-outcome>
+            <to-view-id>/vehicles.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/infoNewVehicle.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>infoNewVehicleToIndex</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
 </faces-config>

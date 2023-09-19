@@ -200,15 +200,5 @@ public class VehicleBean {
         Matcher matcher = pattern.matcher(this.driverId);
         return matcher.matches();
     }
-    
-    /*
-    public boolean verficarPlaca() {
-        for (Vehicles vehiculo : this.getVehicles()) {
-            if (vehiculo.getPlaca().equals(this.placa)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    */
+
 }
